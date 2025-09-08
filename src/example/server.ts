@@ -28,10 +28,10 @@ try {
       return;
     }
 
-    const { email, username } = req.body;
+    const { email, username, from } = req.body;
     const emailId = sendEmail({
       to: email,
-      from: "my app",
+      from: from,
       subject: "Password Reset Request",
       html: `
       <div style="background-color: #f5f5f5; padding: 40px; font-family: Roobert, sans-serif;">

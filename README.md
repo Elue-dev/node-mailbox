@@ -2,19 +2,18 @@
 
 A **development email preview tool** for Node.js inspired by Phoenix Swoosh for Elixir.
 Capture and preview emails in a web UI without needing SMTP or third-party email providers.
-
 Built for **Express.js** projects.
 
 ---
 
 ## ✨ Features
 
-* 📥 Capture all outgoing dev emails into an in-memory mailbox
-* 🌐 Preview emails instantly in a browser (`/dev/mailbox`)
-* 🔄 Real-time updates — new emails appear without refreshing
-* 🗑️ Delete one or all emails from the mailbox
-* ⚡ Zero setup SMTP — everything works out of the box
-* 🛠️ Configurable path, max stored emails, and CORS support
+- 📥 Capture all outgoing dev emails into an in-memory mailbox
+- 🌐 Preview emails instantly in a browser (`/dev/mailbox`)
+- 💾 **Persistent storage** with IndexedDB - emails survive server restarts
+- 🗑️ Delete one or all emails from the mailbox
+- ⚡ Zero setup SMTP — everything works out of the box
+- 🛠️ Configurable path, max stored emails, and CORS support
 
 ---
 
@@ -44,8 +43,8 @@ app.use(express.json());
 // Attach the dev mailbox at /dev/mailbox
 attachDevMailbox(app, {
   path: "/dev/mailbox", // optional (default)
-  maxEmails: 50,        // optional, default: 100
-  enableCors: true      // optional, default: true
+  maxEmails: 500, // optional, default: 500
+  enableCors: true, // optional, default: true
 });
 
 // Example endpoint that sends a test email
@@ -64,14 +63,14 @@ app.post("/send-test", (req, res) => {
       <h2>Password Reset Request</h2>
       <p>Hello ${username}, click the button below to reset your password:</p>
       <a href="https://example.com/reset" style="color: white; background: #26577f; padding: 10px 20px; border-radius: 5px;">Reset Password</a>
-    `
+    `,
   });
 
   res.json({
     success: true,
     message: "Email sent!",
     emailId,
-    mailboxUrl: `http://localhost:${PORT}/dev/mailbox`
+    mailboxUrl: `http://localhost:${PORT}/dev/mailbox`,
   });
 });
 
@@ -90,9 +89,9 @@ Attach the mailbox UI and API routes to your Express app.
 
 Options:
 
-* `path` *(string, default: "/dev/mailbox")* – where the mailbox UI lives
-* `maxEmails` *(number, default: 100)* – how many emails to keep in memory
-* `enableCors` *(boolean, default: true)* – whether to allow CORS requests
+- `path` _(string, default: "/dev/mailbox")_ – where the mailbox UI lives
+- `maxEmails` _(number, default: 500)_ – how many emails to keep in memory
+- `enableCors` _(boolean, default: true)_ – whether to allow CORS requests
 
 ---
 
@@ -102,14 +101,14 @@ Capture a new email in the dev mailbox.
 
 Parameters:
 
-* `to` *(string)* – recipient
-* `from` *(string)* – sender
-* `subject` *(string)* – subject line
-* `html` *(string)* – email body (HTML supported)
+- `to` _(string)_ – recipient
+- `from` _(string)_ – sender
+- `subject` _(string)_ – subject line
+- `html` _(string)_ – email body (HTML supported)
 
 Returns:
 
-* `id` *(string)* – unique ID of the stored email
+- `id` _(string)_ – unique ID of the stored email
 
 ---
 
@@ -127,18 +126,32 @@ Manually create a mailbox instance (advanced use).
 
 ## 🌐 Mailbox UI
 
-Once set up, visit:
+Once set up (assuming you are using PORT 3000 and a path of /dev/mailbox), visit:
 
 ```
 http://localhost:3000/dev/mailbox
 ```
 
-You’ll see:
+You'll see:
 
-* Inbox of captured emails
-* Email preview (HTML rendering + raw JSON)
-* Delete buttons for individual/all emails
-* Auto-refresh when new emails appear
+- Inbox of captured emails
+- Email preview with full HTML rendering
+- **Persistent email storage** - emails remain after server restarts
+- Delete buttons for individual/all emails
+- Search functionality across all emails
+
+---
+
+## 💾 Data Persistence
+
+**Node Mailbox** uses **IndexedDB** in the browser to persist emails locally:
+
+- ✅ **Emails survive server restarts** (nodemon, crashes, deployments)
+- ✅ **Automatic syncing** when server comes back online
+- ✅ **Browser-based storage** - no server-side database needed
+- 🗑️ **User-controlled cleanup** - emails persist until manually deleted
+
+**Note**: Emails are stored in your browser's IndexedDB. Clearing browser data will remove stored emails.
 
 ---
 
@@ -156,10 +169,10 @@ npm run example
 
 ## ⚠️ Notes
 
-* This tool is **dev-only**. Do **not** use it in production.
-* Currently supports **Express.js only**.
+- This tool is **dev-only**. Do **not** use it in production.
+- Currently supports **Express.js only**.
   (Fastify/Bun/Hono adapters may come later.)
-* Emails are stored **in-memory**. Restarting the server clears them.
+- Emails are stored **in-memory on server** + **IndexedDB in browser** for persistence.
 
 ---
 
