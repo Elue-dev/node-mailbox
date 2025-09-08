@@ -18,6 +18,7 @@ try {
 
   attachDevMailbox(app, {
     path: MAIL_BOX_PATH,
+    appName: "Shop.co",
     maxEmails: 10,
     enableCors: true,
   });
@@ -28,10 +29,10 @@ try {
       return;
     }
 
-    const { email, username, from } = req.body;
+    const { email, username } = req.body;
     const emailId = sendEmail({
       to: email,
-      from: from,
+      from: "Shop.co",
       subject: "Password Reset Request",
       html: `
       <div style="background-color: #f5f5f5; padding: 40px; font-family: Roobert, sans-serif;">

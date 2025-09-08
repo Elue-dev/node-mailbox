@@ -64,7 +64,7 @@ class EmailDevMailbox {
         this.router.get("/api/emails/:id", this.getEmail.bind(this));
         this.router.delete("/api/emails", this.deleteAllEmails.bind(this));
         this.router.delete("/api/emails/:id", this.deleteEmail.bind(this));
-        this.router.use("/assets", express_1.default.static(path_1.default.join(__dirname, "assets")));
+        this.router.use("/assets", express_1.default.static(path_1.default.resolve(__dirname, "assets")));
     }
     serveMailboxUI(req, res) {
         const html = this.generateMailboxHTML();

@@ -10,6 +10,7 @@ export interface EmailData {
 
 export interface EmailDevMailboxOptions {
   path?: string; // Default: '/dev/mailbox'
+  appName?: string; // Default: ''
   maxEmails?: number; // Default: 100
   enableCors?: boolean; // Default: true
 }

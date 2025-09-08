@@ -2,7 +2,7 @@ import express, { Request, Response, Router } from "express";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
 import { EmailData, EmailDevMailboxOptions } from "./types";
-import DevMailUI from "./template/dev-mail-ui";
+import fs from "fs";
 
 class EmailDevMailbox {
   private emails: EmailData[] = [];
@@ -12,6 +12,7 @@ class EmailDevMailbox {
   constructor(options: EmailDevMailboxOptions = {}) {
     this.options = {
       path: options.path || "/dev/mailbox",
+      appName: options.appName || "Node App",
       maxEmails: options.maxEmails || 100,
       enableCors: options.enableCors !== false,
     };
@@ -33,7 +34,7 @@ class EmailDevMailbox {
       this.emails = this.emails.slice(0, this.options.maxEmails);
     }
 
-    console.log(`📧 Email captured: ${email.subject} (ID: ${email.id})`);
+    console.log(`📭 Email captured: ${email.subject} (ID: ${email.id})`);
     return email.id;
   }
 
@@ -84,7 +85,11 @@ class EmailDevMailbox {
   }
 
   private serveMailboxUI(req: Request, res: Response): void {
-    const html = this.generateMailboxHTML();
+    const filePath = path.resolve(__dirname, "ui/index.html");
+    let html = fs.readFileSync(filePath, "utf-8");
+
+    html = html.replace(/__PATH__/g, this.options.path);
+    html = html.replace(/__APP_NAME__/g, this.options.appName);
     res.send(html);
   }
 
@@ -126,12 +131,6 @@ class EmailDevMailbox {
     const deletedEmail = this.emails.splice(index, 1)[0];
     res.json({ message: "Email deleted", email: deletedEmail });
   }
-
-  private generateMailboxHTML() {
-    return DevMailUI({
-      path: this.options.path,
-    });
-  }
 }
 
 let devMailboxInstance: EmailDevMailbox | null = null;
@@ -172,7 +171,7 @@ export function attachDevMailbox(
   const mailbox = createDevMailbox(options);
   app.use(mailbox.getPath(), mailbox.getRouter());
 
-  console.log(`📧 Dev Mailbox available at: ${mailbox.getPath()}`);
+  console.log(`📭 Dev Mailbox available at: ${mailbox.getPath()}`);
   return mailbox;
 }
 

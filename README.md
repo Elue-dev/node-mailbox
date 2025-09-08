@@ -43,6 +43,7 @@ app.use(express.json());
 // Attach the dev mailbox at /dev/mailbox
 attachDevMailbox(app, {
   path: "/dev/mailbox", // optional (default)
+  appName: "Your app name", // optional, default: Node App
   maxEmails: 500, // optional, default: 500
   enableCors: true, // optional, default: true
 });
@@ -90,6 +91,7 @@ Attach the mailbox UI and API routes to your Express app.
 Options:
 
 - `path` _(string, default: "/dev/mailbox")_ – where the mailbox UI lives
+- `appName` _(string, default: "Node App")_ – your app name
 - `maxEmails` _(number, default: 500)_ – how many emails to keep in memory
 - `enableCors` _(boolean, default: true)_ – whether to allow CORS requests
 
