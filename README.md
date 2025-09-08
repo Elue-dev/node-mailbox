@@ -6,6 +6,11 @@ Built for **Express.js** projects.
 
 ---
 
+<video width="600" controls>
+  <source src="https://res.cloudinary.com/dwdsjbetu/video/upload/v1757337691/Screen_Recording_2025-09-08_at_13.50.07_etrb7y.mp4" type="video/mp4">
+  Your browser does not support the video tag. (open video at https://res.cloudinary.com/dwdsjbetu/video/upload/v1757337691/Screen_Recording_2025-09-08_at_13.50.07_etrb7y.mp4)
+</video>
+
 ## ✨ Features
 
 - 📥 Capture all outgoing dev emails into an in-memory mailbox
