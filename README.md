@@ -1,4 +1,4 @@
-# 📧 Node Mailbox
+# <img src="https://res.cloudinary.com/dwdsjbetu/image/upload/v1757306547/logo_gvgci0.png" alt="Node Mailbox Logo" width="52" height="52" style="vertical-align: middle;"/> Node Mailbox
 
 A **development email preview tool** for Node.js inspired by Phoenix Swoosh for Elixir.
 Capture and preview emails in a web UI without needing SMTP or third-party email providers.
