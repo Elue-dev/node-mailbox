@@ -21,9 +21,9 @@ Built for **Express.js** projects.
 ## 🚀 Installation
 
 ```bash
-npm install node-dev-email-mailbox --save-dev
+npm install node-mailbox --save-dev
 # or
-yarn add node-dev-email-mailbox --dev
+yarn add node-mailbox --dev
 ```
 
 ---
@@ -34,7 +34,7 @@ Add the dev mailbox to your Express app:
 
 ```ts
 import express from "express";
-import { attachDevMailbox, sendEmail } from "node-dev-email-mailbox";
+import { attachDevMailbox, sendEmail } from "node-mailbox";
 
 const app = express();
 const PORT = 3000;
