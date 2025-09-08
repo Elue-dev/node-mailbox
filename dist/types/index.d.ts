@@ -9,6 +9,7 @@ export interface EmailData {
 }
 export interface EmailDevMailboxOptions {
     path?: string;
+    appName?: string;
     maxEmails?: number;
     enableCors?: boolean;
 }

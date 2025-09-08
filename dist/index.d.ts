@@ -15,7 +15,6 @@ declare class EmailDevMailbox {
     private getEmail;
     private deleteAllEmails;
     private deleteEmail;
-    private generateMailboxHTML;
 }
 export declare function createDevMailbox(options?: EmailDevMailboxOptions): EmailDevMailbox;
 export declare function sendEmail(emailData: Omit<EmailData, "id" | "timestamp">): string;

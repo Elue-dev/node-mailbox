@@ -10,12 +10,13 @@ exports.attachDevMailbox = attachDevMailbox;
 const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const uuid_1 = require("uuid");
-const dev_mail_ui_1 = __importDefault(require("./template/dev-mail-ui"));
+const fs_1 = __importDefault(require("fs"));
 class EmailDevMailbox {
     constructor(options = {}) {
         this.emails = [];
         this.options = {
             path: options.path || "/dev/mailbox",
+            appName: options.appName || "Node App",
             maxEmails: options.maxEmails || 100,
             enableCors: options.enableCors !== false,
         };
@@ -32,7 +33,7 @@ class EmailDevMailbox {
         if (this.emails.length > this.options.maxEmails) {
             this.emails = this.emails.slice(0, this.options.maxEmails);
         }
-        console.log(`📧 Email captured: ${email.subject} (ID: ${email.id})`);
+        console.log(`📭 Email captured: ${email.subject} (ID: ${email.id})`);
         return email.id;
     }
     clearEmails() {
@@ -67,7 +68,10 @@ class EmailDevMailbox {
         this.router.use("/assets", express_1.default.static(path_1.default.resolve(__dirname, "assets")));
     }
     serveMailboxUI(req, res) {
-        const html = this.generateMailboxHTML();
+        const filePath = path_1.default.resolve(__dirname, "ui/index.html");
+        let html = fs_1.default.readFileSync(filePath, "utf-8");
+        html = html.replace(/__PATH__/g, this.options.path);
+        html = html.replace(/__APP_NAME__/g, this.options.appName);
         res.send(html);
     }
     getEmails(req, res) {
@@ -104,11 +108,6 @@ class EmailDevMailbox {
         const deletedEmail = this.emails.splice(index, 1)[0];
         res.json({ message: "Email deleted", email: deletedEmail });
     }
-    generateMailboxHTML() {
-        return (0, dev_mail_ui_1.default)({
-            path: this.options.path,
-        });
-    }
 }
 let devMailboxInstance = null;
 function createDevMailbox(options) {
@@ -132,7 +131,7 @@ function clearEmails() {
 function attachDevMailbox(app, options) {
     const mailbox = createDevMailbox(options);
     app.use(mailbox.getPath(), mailbox.getRouter());
-    console.log(`📧 Dev Mailbox available at: ${mailbox.getPath()}`);
+    console.log(`📭 Dev Mailbox available at: ${mailbox.getPath()}`);
     return mailbox;
 }
 exports.default = {

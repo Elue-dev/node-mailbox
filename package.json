@@ -5,8 +5,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc && npm run copy-assets",
-    "copy-assets": "node -e \"require('fs').cpSync('src/assets', 'dist/assets', {recursive: true})\"",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc && npm run copy-assets",
+    "copy-assets": "node -e \"require('fs').cpSync('src/assets', 'dist/assets', {recursive:true}); require('fs').cpSync('src/ui', 'dist/ui', {recursive:true})\"",
     "dev": "tsc --watch",
     "prepublishOnly": "npm run build",
     "example": "ts-node src/example/server.ts",
