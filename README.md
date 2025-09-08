@@ -6,7 +6,7 @@ Built for **Express.js** projects.
 
 ---
 
-[![Watch the demo](https://res.cloudinary.com/dwdsjbetu/image/upload/v1757337318/ScreenRecording2025-09-08at13.50.07-ezgif.com-video-to-gif-converter_x1a7fa.gif)](https://res.cloudinary.com/dwdsjbetu/video/upload/v1757337691/Screen_Recording_2025-09-08_at_13.50.07_etrb7y.mp4)
+[Watch the demo video](https://res.cloudinary.com/dwdsjbetu/video/upload/v1757337691/Screen_Recording_2025-09-08_at_13.50.07_etrb7y.mp4)
 
 ## ✨ Features
 
