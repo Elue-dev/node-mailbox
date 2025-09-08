@@ -49,7 +49,7 @@ app.use(express.json());
 attachDevMailbox(app, {
   path: "/dev/mailbox", // optional (default)
   appName: "Your app name", // optional, default: Node App
-  maxEmails: 500, // optional, default: 500
+  maxEmails: 50, // optional, default: 100
   enableCors: true, // optional, default: true
 });
 
