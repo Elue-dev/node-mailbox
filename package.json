@@ -9,7 +9,8 @@
     "dev": "tsc --watch",
     "prepublishOnly": "npm run build",
     "test": "jest",
-    "example": "ts-node src/example/server.ts"
+    "example": "ts-node src/example/server.ts",
+    "example:dev": "nodemon --watch src --exec ts-node src/example/server.ts"
   },
   "keywords": [
     "email",
@@ -39,6 +40,7 @@
   "files": [
     "dist/",
     "README.md",
+    "assets",
     "LICENSE"
   ],
   "dependencies": {

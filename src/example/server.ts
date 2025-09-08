@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
   );
 });
 
-const MAIL_BOX_PATH = "/dev/mailbox";
+const MAIL_BOX_PATH = "/shop/dev/mailbox";
 
 try {
   const { attachDevMailbox, sendEmail } = require("../index");
