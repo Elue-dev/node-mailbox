@@ -1,6 +1,6 @@
 {
   "name": "node-mailbox",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "A development email preview tool inspired by Phoenix Swoosh - capture and preview emails in a web UI without SMTP",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
