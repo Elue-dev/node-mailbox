@@ -6,10 +6,7 @@ Built for **Express.js** projects.
 
 ---
 
-<video width="600" controls>
-  <source src="https://res.cloudinary.com/dwdsjbetu/video/upload/v1757337691/Screen_Recording_2025-09-08_at_13.50.07_etrb7y.mp4" type="video/mp4">
-  Your browser does not support the video tag. (open video at https://res.cloudinary.com/dwdsjbetu/video/upload/v1757337691/Screen_Recording_2025-09-08_at_13.50.07_etrb7y.mp4)
-</video>
+[![Watch the demo](https://res.cloudinary.com/dwdsjbetu/image/upload/v1757337318/ScreenRecording2025-09-08at13.50.07-ezgif.com-video-to-gif-converter_x1a7fa.gif)
 
 ## ✨ Features
 
@@ -49,7 +46,7 @@ app.use(express.json());
 attachDevMailbox(app, {
   path: "/dev/mailbox", // optional (default)
   appName: "Your app name", // optional, default: Node App
-  maxEmails: 50, // optional, default: 100
+  maxEmails: 500, // optional, default: 500
   enableCors: true, // optional, default: true
 });
 
