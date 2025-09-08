@@ -77,7 +77,10 @@ class EmailDevMailbox {
     this.router.delete("/api/emails", this.deleteAllEmails.bind(this));
     this.router.delete("/api/emails/:id", this.deleteEmail.bind(this));
 
-    this.router.use("/assets", express.static(path.join(__dirname, "assets")));
+    this.router.use(
+      "/assets",
+      express.static(path.resolve(__dirname, "assets")),
+    );
   }
 
   private serveMailboxUI(req: Request, res: Response): void {

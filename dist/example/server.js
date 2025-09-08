@@ -10,7 +10,7 @@ app.use(express_1.default.json());
 app.get("/", (req, res) => {
     res.send("<h1>✅ Express server is working!</h1><p>If you see this, the server is running correctly.</p>");
 });
-const MAIL_BOX_PATH = "/dev/mailbox";
+const MAIL_BOX_PATH = "/shop/dev/mailbox";
 try {
     const { attachDevMailbox, sendEmail } = require("../index");
     attachDevMailbox(app, {
@@ -23,10 +23,10 @@ try {
             res.status(400).json({ error: "email and username are required" });
             return;
         }
-        const { email, username } = req.body;
+        const { email, username, from } = req.body;
         const emailId = sendEmail({
             to: email,
-            from: "my app",
+            from: from,
             subject: "Password Reset Request",
             html: `
       <div style="background-color: #f5f5f5; padding: 40px; font-family: Roobert, sans-serif;">

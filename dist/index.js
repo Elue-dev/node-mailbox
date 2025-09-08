@@ -78,6 +78,7 @@ class EmailDevMailbox {
                 from: email.from,
                 subject: email.subject,
                 timestamp: email.timestamp,
+                html: email.html,
             })),
             count: this.emails.length,
         });
