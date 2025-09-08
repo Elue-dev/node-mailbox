@@ -71,23 +71,28 @@ class EmailDevMailbox {
       });
     }
 
+    this.router.use(
+      express.static(path.resolve(__dirname, "ui"), { index: false }),
+    );
+
+    this.router.use(
+      "/assets",
+      express.static(path.resolve(__dirname, "assets")),
+    );
+
     this.router.get("/", this.serveMailboxUI.bind(this));
 
     this.router.get("/api/emails", this.getEmails.bind(this));
     this.router.get("/api/emails/:id", this.getEmail.bind(this));
     this.router.delete("/api/emails", this.deleteAllEmails.bind(this));
     this.router.delete("/api/emails/:id", this.deleteEmail.bind(this));
-
-    this.router.use(
-      "/assets",
-      express.static(path.resolve(__dirname, "assets")),
-    );
   }
 
   private serveMailboxUI(req: Request, res: Response): void {
-    const filePath = path.resolve(__dirname, "ui/index.html");
-    let html = fs.readFileSync(filePath, "utf-8");
-
+    let html = fs.readFileSync(
+      path.resolve(__dirname, "ui/index.html"),
+      "utf-8",
+    );
     html = html.replace(/__PATH__/g, this.options.path);
     html = html.replace(/__APP_NAME__/g, this.options.appName);
     res.send(html);

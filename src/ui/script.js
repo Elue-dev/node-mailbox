@@ -1,3 +1,5 @@
+const PATH = window.DEV_MAILBOX_PATH;
+
 class EmailDatabase {
   constructor() {
     this.dbName = "DevMailboxDB";
@@ -181,7 +183,7 @@ async function loadEmails() {
     if (isOnline) {
       updateSyncStatus("syncing", "Syncing...");
 
-      const response = await fetch("__PATH__/api/emails", {
+      const response = await fetch(`${PATH}/api/emails`, {
         headers: { "Cache-Control": "no-cache" },
       });
 
@@ -332,7 +334,7 @@ async function selectEmail(emailId) {
 
     if (isOnline) {
       try {
-        const response = await fetch(`__PATH__/api/emails/${emailId}`);
+        const response = await fetch(`${PATH}/api/emails/${emailId}`);
         if (response.ok) {
           email = await response.json();
         }
@@ -411,7 +413,7 @@ async function deleteCurrentEmail() {
       try {
         if (isOnline) {
           try {
-            await fetch(`__PATH__/api/emails/${selectedEmailId}`, {
+            await fetch(`${PATH}/api/emails/${selectedEmailId}`, {
               method: "DELETE",
             });
           } catch (error) {
@@ -452,7 +454,7 @@ async function clearAllEmails() {
       try {
         if (isOnline) {
           try {
-            await fetch("__PATH__/api/emails", {
+            await fetch(`${PATH}/api/emails`, {
               method: "DELETE",
             });
           } catch (error) {
