@@ -1,0 +1,64 @@
+{
+  "name": "node-mailbox",
+  "version": "1.0.0",
+  "description": "A development email preview tool inspired by Phoenix Swoosh - capture and preview emails in a web UI without SMTP",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build",
+    "test": "jest",
+    "example": "ts-node src/example/server.ts"
+  },
+  "keywords": [
+    "email",
+    "development",
+    "preview",
+    "mailbox",
+    "testing",
+    "smtp",
+    "express",
+    "nodejs",
+    "typescript",
+    "node-mailbox",
+    "node-email-viewer",
+    "email-viewer",
+    "email-preview"
+  ],
+  "author": "Wisdom Elue",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Elue-dev/node-mailbox.git"
+  },
+  "homepage": "https://github.com/Elue-dev/node-mailbox#readme",
+  "bugs": {
+    "url": "https://github.com/Elue-dev/node-mailbox/issues"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "express": "^4.0.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/jest": "^29.5.4",
+    "@types/node": "^20.5.0",
+    "@types/uuid": "^9.0.2",
+    "jest": "^29.6.2",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  },
+  "peerDependencies": {
+    "express": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
